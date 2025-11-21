@@ -1,10 +1,13 @@
 <?php
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
-Class Usuario extends Model
+class Usuario extends Model
 {
-    protected $table = 'usuarios';
-    protected $fillable = ['nombre', 'email', 'password'];
-    public $timestamps = false;
+    protected $table = 'users'; // CORREGIDO
+
+    protected $fillable = ['name', 'email', 'password', 'role'];
+
+    public $timestamps = true;
 }
