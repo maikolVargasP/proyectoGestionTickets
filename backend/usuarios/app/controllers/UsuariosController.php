@@ -8,11 +8,36 @@ class UsuariosController
     public function getUsuarios()
     {
         $rows = Usuario::all();
+        return $rows->isEmpty() ? null : $rows->toJson();
+    }
 
-        if ($rows->isEmpty()) {
-            return null;
+    public function registrarUsuario($data)
+    {
+        // Validar campos obligatorios
+        if (
+            empty($data['name']) ||
+            empty($data['email']) ||
+            empty($data['password']) ||
+            empty($data['role'])
+        ) {
+            return ['error' => 'Todos los campos son obligatorios.', 'status' => 400];
         }
 
-        return $rows->toJson();
+        // Validar existencia de email
+        if (Usuario::where('email', $data['email'])->exists()) {
+            return ['error' => 'El email ya está registrado.', 'status' => 409];
+        }
+
+        // Hashear contraseña
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        // Crear usuario
+        $user = Usuario::create($data);
+
+        return [
+            'message' => 'Usuario registrado correctamente.',
+            'user' => $user,
+            'status' => 201
+        ];
     }
 }

@@ -1,8 +1,15 @@
 #Prueba del microservicio usuarios
 
 GET http://127.0.0.1:8000
-
-
 ### Consultar todos los usuarios
-
 GET http://127.0.0.1:8000/usuarios/all
+### Registrar un nuevo usuario
+POST http://127.0.0.1:8000/usuarios/register
+Content-Type: application/json
+
+{
+    "name": "Juan Pérez",
+    "email": "juan@example.com",
+    "password": "123456",
+    "role": "gestor"
+}
