@@ -15,5 +15,6 @@ return function (App $app) {
     $app->group('/usuarios', function (RouteCollectorProxy $group) {
         $group->get('/all', [UsuariosRepository::class, 'queryAllUsuarios']);
         $group->post('/register', [UsuariosRepository::class, 'registrarUsuario']);
+        $group->post('/login', [UsuariosRepository::class, 'login']);
     });
 };
