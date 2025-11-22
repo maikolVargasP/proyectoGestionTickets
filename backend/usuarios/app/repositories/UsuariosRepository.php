@@ -55,4 +55,20 @@ class UsuariosRepository
             ->withStatus(200)
             ->withHeader('Content-Type', 'application/json');
     }
+    public function miPerfil(Request $request, Response $response)
+    {
+        // El AuthMiddleware ya dejó los datos del usuario en los atributos
+        $user = $request->getAttribute('user');
+
+        if (!$user) {
+            $response->getBody()->write(json_encode(['error' => 'Usuario no autenticado']));
+            return $response->withStatus(401)->withHeader("Content-Type", "application/json");
+        }
+
+        $controller = new UsuariosController();
+        $data = $controller->getProfile($user);
+
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader("Content-Type", "application/json");
+    }
 }

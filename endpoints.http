@@ -1,8 +1,9 @@
 #Prueba del microservicio usuarios
-
 GET http://127.0.0.1:8000
+
 ### Consultar todos los usuarios
 GET http://127.0.0.1:8000/usuarios/all
+
 ### Registrar un nuevo usuario
 POST http://127.0.0.1:8000/usuarios/register
 Content-Type: application/json
@@ -21,3 +22,25 @@ Content-Type: application/json
     "email": "juan@example.com",
     "password": "123456"
 }
+### Consultar todos los usuarios con token
+GET http://127.0.0.1:8000/usuarios/all
+Authorization: Bearer token_gestor_1_abc123
+
+### Login admin
+POST http://127.0.0.1:8000/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "admin1@example.com",
+    "password": "password123"
+}
+### Consultar todos los usuarios con token de admin
+GET http://127.0.0.1:8000/usuarios/all
+Authorization: Bearer bd1d04894ace9c4a2bd8d200807e3924b64d3507af0d5861829480ff6dc62675
+
+### Consultar mi perfil
+GET http://127.0.0.1:8000/usuarios/profile
+Authorization: Bearer token_admin_1_xyz789
+
+
+

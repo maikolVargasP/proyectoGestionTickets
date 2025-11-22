@@ -45,9 +45,17 @@ class UsuariosController
         if (!$user) {
             return ['error' => 'El email no está registrado.', 'status' => 404];
         }
-        // Verificar contraseña
-        if (!password_verify($data['password'], $user->password)) {
-            return ['error' => 'Contraseña incorrecta.', 'status' => 401];
+        // Verificar contraseña (detectando si está hasheada o es texto plano)
+        // Caso 1: contraseña hasheada (empieza por $2y$)
+        if (str_starts_with($user->password, '$2y$')) {
+            if (!password_verify($data['password'], $user->password)) {
+                return ['error' => 'Contraseña incorrecta.', 'status' => 401];
+            }
+        } else {
+            // Caso 2: contraseña en texto plano (como viene en la BD del PDF)
+            if ($data['password'] !== $user->password) {
+                return ['error' => 'Contraseña incorrecta.', 'status' => 401];
+            }
         }
         // Generar token aleatorio
         $token = bin2hex(random_bytes(32)); // 64 caracteres
@@ -66,6 +74,16 @@ class UsuariosController
                 'role'  => $user->role
             ],
             'status' => 200
+        ];
+    }
+    public function getProfile($user)
+    {
+        // Retornar al frontend solo los datos necesarios
+        return [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'role' => $user['role']
         ];
     }
 }
