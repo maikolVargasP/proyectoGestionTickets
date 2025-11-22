@@ -36,11 +36,49 @@ Content-Type: application/json
 }
 ### Consultar todos los usuarios con token de admin
 GET http://127.0.0.1:8000/usuarios/all
-Authorization: Bearer bd1d04894ace9c4a2bd8d200807e3924b64d3507af0d5861829480ff6dc62675
+Authorization: Bearer token_admin_1_xyz789
+
+### Consultar con token de gestor (no deja)
+GET http://127.0.0.1:8000/usuarios/all
+Authorization: Bearer token_gestor_1_abc123
 
 ### Consultar mi perfil
 GET http://127.0.0.1:8000/usuarios/profile
 Authorization: Bearer token_admin_1_xyz789
+
+###Consultar usuario por id con token admin
+GET http://127.0.0.1:8000/usuarios/4
+Authorization: Bearer token_admin_1_xyz789
+
+###Consultar usuario con token gestor (Solo muestra el propio)
+GET http://127.0.0.1:8000/usuarios/3
+Authorization: Bearer token_gestor_1_abc123
+
+### Actualizar usuario por id
+PUT http://127.0.0.1:8000/usuarios/4
+Content-Type: application/json
+Authorization: Bearer token_admin_1_xyz789
+
+{
+    "name": "Jhoel Olmos"
+}
+
+###Actualizar usuario con token gestor (Solo deja el propio)
+PUT http://127.0.0.1:8000/usuarios/1
+Content-Type: application/json
+Authorization: Bearer token_gestor_1_abc123
+
+{
+    "name": "Juan gestor"
+}
+
+###Elimiar al usuario por id
+DELETE http://127.0.0.1:8000/usuarios/4
+Authorization: Bearer token_admin_1_xyz789
+
+### token_gestor_1_abc123
+### token_admin_1_xyz789
+
 
 
 

@@ -21,33 +21,26 @@ class AuthMiddleware implements MiddlewareInterface
             return $response->withStatus(401)
                             ->withHeader('Content-Type', 'application/json');
         }
-
         // Extraer token real
         $token = trim(str_replace('Bearer', '', $authHeader));
-
         // Buscar token en base de datos
         $tokenData = AuthToken::where('token', $token)->first();
-
         if (!$tokenData) {
             $response = new \Slim\Psr7\Response();
             $response->getBody()->write(json_encode(['error' => 'Token inválido']));
             return $response->withStatus(401)
                             ->withHeader('Content-Type', 'application/json');
         }
-
         // Obtener usuario dueño del token
         $user = Usuario::find($tokenData->user_id);
-
         if (!$user) {
             $response = new \Slim\Psr7\Response();
             $response->getBody()->write(json_encode(['error' => 'Usuario no encontrado']));
             return $response->withStatus(401)
                             ->withHeader('Content-Type', 'application/json');
         }
-
         // Pasar usuario a la request
         $request = $request->withAttribute('user', $user);
-
         // Continuar al siguiente middleware o ruta
         return $handler->handle($request);
     }

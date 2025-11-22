@@ -20,7 +20,6 @@ class RoleMiddleware implements MiddlewareInterface
     {
         // Debe venir del AuthMiddleware
         $user = $request->getAttribute('user');
-
         if (!$user) {
             $response = new SlimResponse();
             $response->getBody()->write(json_encode([
@@ -28,7 +27,6 @@ class RoleMiddleware implements MiddlewareInterface
             ]));
             return $response->withStatus(401)->withHeader('Content-Type', 'application/json');
         }
-
         // Validar roles
         if (!in_array($user['role'], $this->allowedRoles)) {
             $response = new SlimResponse();
@@ -37,7 +35,6 @@ class RoleMiddleware implements MiddlewareInterface
             ]));
             return $response->withStatus(403)->withHeader('Content-Type', 'application/json');
         }
-
         return $handler->handle($request);
     }
 }

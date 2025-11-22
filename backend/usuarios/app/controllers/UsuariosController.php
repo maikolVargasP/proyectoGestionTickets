@@ -78,12 +78,43 @@ class UsuariosController
     }
     public function getProfile($user)
     {
-        // Retornar al frontend solo los datos necesarios
         return [
             'id' => $user['id'],
             'name' => $user['name'],
             'email' => $user['email'],
             'role' => $user['role']
         ];
+    }
+    public function getUsuarioById($id)
+    {
+        $user = Usuario::find($id);
+        if (!$user) {
+            return null;
+        }
+        return $user;
+    }
+    public function actualizarUsuario($id, $data)
+    {
+        $user = Usuario::find($id);
+        if (!$user) {
+            return null;
+        }
+        // Actualizar solo campos permitidos
+        $user->name = $data['name'] ?? $user->name;
+        $user->email = $data['email'] ?? $user->email;
+        if (isset($data['password'])) {
+            $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
+        }
+        $user->save();
+        return $user;
+    }
+    public function eliminarUsuario($id)
+    {
+        $user = Usuario::find($id);
+        if (!$user) {
+            return false;
+        }
+        $user->delete();
+        return true;
     }
 }
