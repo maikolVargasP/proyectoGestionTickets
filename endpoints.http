@@ -90,5 +90,30 @@ Authorization: Bearer TU_TOKEN
 
 #------------------------------TICKETS----------------------------------
 
+###Test tickets (solo gestor)
+GET http://127.0.0.1:8001/tickets/mine
+Authorization: Bearer token_gestor_1_abc123
+
+###Consultar ticket admin
+GET http://127.0.0.1:8001/tickets/all
+Authorization: Bearer token_admin_1_xyz789  
+
+###COnsultar actividades (el gestor solo puede ver las que él creó)
+GET http://127.0.0.1:8001/tickets/1
+Authorization: Bearer token_gestor_1_abc123  
+
+###Ticket asignado
+PUT http://127.0.0.1:8001/tickets/1/assign
+Authorization: Bearer token_admin_1_xyz789  
+Content-Type: application/json
+
+{
+    "admin_id": 3
+}
+
+
+
+
+
 
 
