@@ -26,11 +26,18 @@ return function (App $app) {
             ->add(new AuthMiddleware());
 
         $group->get('/{id}', [UsuariosRepository::class, 'obtenerUsuario'])
-            ->add(new AuthMiddleware());
+            ->add(new AuthMiddleware())
+            ->add(new RoleMiddleware(['admin']));
         $group->put('/{id}', [UsuariosRepository::class, 'actualizarUsuario'])
-            ->add(new AuthMiddleware());
+            ->add(new AuthMiddleware())
+            ->add(new RoleMiddleware(['admin']));
         $group->delete('/{id}', [UsuariosRepository::class, 'eliminarUsuario'])
-            ->add(new RoleMiddleware(['admin']))
+            ->add(new AuthMiddleware())
+            ->add(new RoleMiddleware(['admin']));
+            
+        $group->post('/logout', [UsuariosRepository::class, 'logout'])
+            ->add(new AuthMiddleware());
+        $group->get('/validate-token', [UsuariosRepository::class, 'validarToken'])
             ->add(new AuthMiddleware());
     });
 };

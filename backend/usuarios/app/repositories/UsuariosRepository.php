@@ -68,14 +68,12 @@ class UsuariosRepository
     public function obtenerUsuario(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
-        $userToken = $request->getAttribute('user'); // usuario logueado en el token
-        // REGLAS:
+        $userToken = $request->getAttribute('user');
         // - Admin puede consultar cualquier usuario
-        // - Gestor solo puede consultar su propio perfil
-        if ($userToken['role'] !== 'admin' && $userToken['id'] != $id) {
+        if ($userToken['role'] !== 'admin') {
             $response->getBody()->write(json_encode([
                 'error' => 'No tienes permiso para ver este usuario'
-            ]));
+            ]));    
             return $response->withStatus(403)->withHeader("Content-Type", "application/json");
         }
 
@@ -94,10 +92,10 @@ class UsuariosRepository
     public function actualizarUsuario(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
-        $userToken = $request->getAttribute('user'); // usuario del token
-        // Validar permisos: admin puede todo + gestor solo su perfil
-        if ($userToken['role'] !== 'admin' && $userToken['id'] != $id) {
-            $response->getBody()->write(json_encode(['error' => 'No tienes permiso para actualizar este usuario']));
+        $userToken = $request->getAttribute('user');
+        // Validar permisos: admin puede todo
+        if ($userToken['role'] !== 'admin') {
+            $response->getBody()->write(json_encode(['error' => 'Solo el administrador puede modificar usuarios']));
             return $response->withStatus(403)->withHeader("Content-Type", "application/json");
         }
         $data = $request->getParsedBody();
@@ -113,14 +111,46 @@ class UsuariosRepository
     public function eliminarUsuario(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
+        $userToken = $request->getAttribute('user');
+        if ($userToken['role'] !== 'admin') {
+            $response->getBody()->write(json_encode([
+                'error' => 'Solo el administrador puede eliminar usuarios'
+            ]));
+            return $response->withStatus(403)->withHeader("Content-Type", "application/json");
+        }
         $controller = new UsuariosController();
         $deleted = $controller->eliminarUsuario($id);
         if (!$deleted) {
             $response->getBody()->write(json_encode(['error' => 'Usuario no encontrado']));
             return $response->withStatus(404)->withHeader("Content-Type", "application/json");
         }
-        $response->getBody()->write(json_encode(['message' => 'Usuario eliminado']));
+        $response->getBody()->write(json_encode(['message' => 'Usuario eliminado correctamente']));
         return $response->withHeader("Content-Type", "application/json");
     }
+    public function logout(Request $request, Response $response)
+    {
+        $response->getBody()->write(json_encode([
+            'message' => 'Sesión cerrada correctamente. Eliminé el token en el frontend.'
+        ]));
+        return $response->withHeader("Content-Type", "application/json");
+    }
+    public function validarToken(Request $request, Response $response)
+    {
+        $user = $request->getAttribute('user');
 
+        if (!$user) {
+            $response->getBody()->write(json_encode([
+                'valid' => false,
+                'error' => 'Token inválido'
+            ]));
+            return $response->withStatus(401)->withHeader("Content-Type", "application/json");
+        }
+
+        $response->getBody()->write(json_encode([
+            'valid' => true,
+            'user' => $user
+        ]));
+
+        return $response->withHeader("Content-Type", "application/json");
+    }
 }

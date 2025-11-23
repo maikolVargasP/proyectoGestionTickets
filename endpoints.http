@@ -1,3 +1,5 @@
+#----------------------------USUARIOS----------------------------------
+
 #Prueba del microservicio usuarios
 GET http://127.0.0.1:8000
 
@@ -76,9 +78,17 @@ Authorization: Bearer token_gestor_1_abc123
 DELETE http://127.0.0.1:8000/usuarios/4
 Authorization: Bearer token_admin_1_xyz789
 
-### token_gestor_1_abc123
-### token_admin_1_xyz789
+###Prueba de logout
+POST http://127.0.0.1:8000/usuarios/logout
+Authorization: Bearer token
 
+###validar token
+GET http://127.0.0.1:8000/usuarios/validate-token
+Authorization: Bearer TU_TOKEN
+# token_gestor_1_abc123
+# token_admin_1_xyz789
+
+#------------------------------TICKETS----------------------------------
 
 
 
