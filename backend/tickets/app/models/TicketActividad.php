@@ -15,13 +15,11 @@ class TicketActividad extends Model
 
     public $timestamps = true;
 
-    // Actividad pertenece a un ticket
     public function ticket()
     {
         return $this->belongsTo(Ticket::class, 'ticket_id');
     }
 
-    // Actividad hecha por un usuario
     public function usuario()
     {
         return $this->belongsTo(User::class, 'user_id');

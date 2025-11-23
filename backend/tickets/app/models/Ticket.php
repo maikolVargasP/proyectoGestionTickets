@@ -15,21 +15,21 @@ class Ticket extends Model
         'admin_id'
     ];
 
-    public $timestamps = true; 
+    public $timestamps = true; // porque tienes created_at y updated_at
 
-    // Un ticket tiene muchas actividades (comentarios / historial)
+    // Relación con historial / actividades
     public function actividades()
     {
         return $this->hasMany(TicketActividad::class, 'ticket_id');
     }
 
-    // Relación con el creador (gestor)
-    public function creador()
+    // Gestor creador del ticket
+    public function gestor()
     {
         return $this->belongsTo(User::class, 'gestor_id');
     }
 
-    // Relación con administrador asignado
+    // Administrador asignado
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id');
