@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema de Tickets</title>
+
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h1 class="title">Sistema de Tickets</h1>
+
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Correo" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                
+                <button type="submit" class="btn-primary">Iniciar Sesión</button>
+
+                <p class="error-message" id="loginError"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

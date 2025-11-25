@@ -1,4 +1,7 @@
 
+#php -S 127.0.0.1:5500 (levantar el front)
+#http://127.0.0.1:5500/index.html
+
 #php -S 127.0.0.1:8000 -t public (Usada para usuarios)
 
 #php -S 127.0.0.1:8001 -t public (Usada paa tickets)
