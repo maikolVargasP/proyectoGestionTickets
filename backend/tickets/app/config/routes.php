@@ -8,7 +8,9 @@ use App\Middleware\RoleMiddleware;
 return function (App $app) {
 
     $app->group('/tickets', function (RouteCollectorProxy $group) {
-
+        $group->get('/search', [TicketsRepository::class, 'buscar'])
+            ->add(new AuthMiddleware());
+            
         $group->post('/create', [TicketsRepository::class, 'crear'])
             ->add(new RoleMiddleware(['gestor']))
             ->add(new AuthMiddleware());
@@ -28,6 +30,21 @@ return function (App $app) {
             ->add(new RoleMiddleware(['admin']))
             ->add(new AuthMiddleware());
             
-        $group->put('/{id}/estado', [TicketsRepository::class, 'cambiarEstado']);
+        $group->put('/{id}/estado', [TicketsRepository::class, 'cambiarEstado'])
+            ->add(new RoleMiddleware(['admin']))
+            ->add(new AuthMiddleware());
+        
+        $group->get('/{id}/actividades', [TicketsRepository::class, 'actividades'])
+            ->add(new RoleMiddleware(['admin']))
+            ->add(new AuthMiddleware());
+        
+        $group->post('/{id}/comentarios', [TicketsRepository::class, 'agregarComentario'])
+            ->add(new AuthMiddleware());
+        
+        $group->post('/{id}/actividad', [TicketsRepository::class, 'agregarActividad'])
+            ->add(new AuthMiddleware()); // admin y gestor pueden
+        
+
+
     });
 };

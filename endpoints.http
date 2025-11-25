@@ -129,12 +129,66 @@ Content-Type: application/json
 
 ### Cambiar estado (del token creado antes)
 PUT http://127.0.0.1:8001/tickets/1/estado
-Authorization: Bearer a5a93f8e32e2cd66a92a2fff8505a7e830be0f4eed3bf52d8ce305df27a12101
+Authorization: Bearer token_admin_1_xyz789 
 Content-Type: application/json
 
 {
     "estado": "en_progreso"
 }
+
+### Consultar actividades de un ticket
+http://127.0.0.1:8001/tickets/1/actividades
+Authorization: Bearer token_admin_1_xyz789 
+
+### Agregar comentario a un ticket
+POST http://127.0.0.1:8001/tickets/1/comentarios
+Authorization: Bearer token_admin_1_xyz789
+Content-Type: application/json
+
+{
+  "mensaje": "Cliente respondió adjuntando evidencia."
+}
+
+### Asignar gestor a un ticket
+PUT http://127.0.0.1:8001/tickets/1/assign
+Authorization: Bearer token_admin_1_xyz789
+Content-Type: application/json
+
+{
+  "admin_id": 3
+}
+
+### Agregar actividad a un ticket
+POST http://127.0.0.1:8001/tickets/1/actividad
+Authorization: Bearer token_gestor_1_abc123
+Content-Type: application/json
+
+{
+  "mensaje": "El equipo de soporte está revisando el problema."
+}
+
+### Agregar comentario a un ticket (gestor en su propio ticket)
+POST http://127.0.0.1:8001/tickets/1/comentarios
+Authorization: Bearer token_gestor_1_abc123
+Content-Type: application/json
+
+{
+  "mensaje": "Estoy teniendo este problema..."
+}
+### Buscar tickets por estado, gestor o admin
+GET http://127.0.0.1:8001/tickets/search?estado=en_progreso
+Authorization: Bearer token_admin_1_xyz789
+
+###Buscar tickets por creador
+GET http://127.0.0.1:8001/tickets/search?gestor_id=3
+Authorization: Bearer token_admin_1_xyz789
+###Buscar tickets por admin asignado
+GET http://127.0.0.1:8001/tickets/search?admin_id=1
+Authorization: Bearer token_admin_1_xyz789
+
+###Buscar tickets por estado (gestor)
+GET http://127.0.0.1:8001/tickets/search?estado=abierto
+Authorization: Bearer token_gestor_1_abc123
 
 
 
