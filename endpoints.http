@@ -1,3 +1,9 @@
+
+#php -S 127.0.0.1:8000 -t public (Usada para usuarios)
+
+#php -S 127.0.0.1:8001 -t public (Usada paa tickets)
+
+
 #----------------------------USUARIOS----------------------------------
 
 #Prueba del microservicio usuarios
@@ -110,6 +116,29 @@ Content-Type: application/json
 {
     "admin_id": 3
 }
+
+
+###Iniciar sesion como admin
+POST http://127.0.0.1:8000/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "admin1@example.com",
+    "password": "password123"
+}
+
+### Cambiar estado (del token creado antes)
+PUT http://127.0.0.1:8001/tickets/1/estado
+Authorization: Bearer a5a93f8e32e2cd66a92a2fff8505a7e830be0f4eed3bf52d8ce305df27a12101
+Content-Type: application/json
+
+{
+    "estado": "en_progreso"
+}
+
+
+
+
 
 
 

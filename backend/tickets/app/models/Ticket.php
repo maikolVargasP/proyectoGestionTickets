@@ -15,7 +15,7 @@ class Ticket extends Model
         'admin_id'
     ];
 
-    public $timestamps = true; // porque tienes created_at y updated_at
+    public $timestamps = true; 
 
     // Relación con historial / actividades
     public function actividades()

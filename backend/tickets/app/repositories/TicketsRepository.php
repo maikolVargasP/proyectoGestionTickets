@@ -4,6 +4,10 @@ namespace App\Repositories;
 use App\Controllers\TicketsController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use App\Models\Ticket;
+use App\Models\TicketActividad;
+
+
 
 class TicketsRepository
 {
@@ -105,6 +109,54 @@ class TicketsRepository
         $response->getBody()->write($ticket->toJson());
         return $response->withHeader("Content-Type", "application/json");
     }
+    public function cambiarEstado(Request $request, Response $response, array $args)
+    {
+        error_log("Entró al método cambiarEstado");
 
+        $ticketId = $args['id'];
+        $data = $request->getParsedBody();
+        $user = $request->getAttribute('user'); // admin autenticado
 
+        if (!isset($data['estado'])) {
+            $response->getBody()->write(json_encode(['error' => 'Debe enviar un estado']));
+            return $response->withStatus(400);
+        }
+
+        $nuevoEstado = $data['estado'];
+
+        $estadosValidos = ['abierto', 'en_progreso', 'resuelto', 'cerrado'];
+
+        if (!in_array($nuevoEstado, $estadosValidos)) {
+            $response->getBody()->write(json_encode(['error' => 'Estado no válido']));
+            return $response->withStatus(400);
+        }
+
+        $ticket = Ticket::find($ticketId);
+
+        if (!$ticket) {
+            $response->getBody()->write(json_encode(['error' => 'Ticket no encontrado']));
+            return $response->withStatus(404);
+        }
+
+        // Si el estado es el mismo, no hacemos nada
+        if ($ticket->estado === $nuevoEstado) {
+            $response->getBody()->write(json_encode(['info' => 'El ticket ya está en ese estado']));
+            return $response->withStatus(200);
+        }
+
+        // Actualizar estado
+        $ticket->estado = $nuevoEstado;
+        $ticket->admin_id = $user->id; // Registrar admin que intervino
+        $ticket->save();
+
+        // Registrar actividad
+        TicketActividad::create([
+            'ticket_id' => $ticket->id,
+            'user_id'   => $user->id,
+            'mensaje'   => "Estado cambiado a: $nuevoEstado"
+        ]);
+
+        $response->getBody()->write($ticket->toJson());
+        return $response->withHeader('Content-Type', 'application/json');
+    }
 }

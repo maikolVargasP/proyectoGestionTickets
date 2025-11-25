@@ -27,5 +27,7 @@ return function (App $app) {
         $group->put('/{id}/assign', [TicketsRepository::class, 'asignar'])
             ->add(new RoleMiddleware(['admin']))
             ->add(new AuthMiddleware());
+            
+        $group->put('/{id}/estado', [TicketsRepository::class, 'cambiarEstado']);
     });
 };
