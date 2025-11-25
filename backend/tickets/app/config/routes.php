@@ -9,8 +9,9 @@ return function (App $app) {
 
     $app->group('/tickets', function (RouteCollectorProxy $group) {
         $group->get('/search', [TicketsRepository::class, 'buscar'])
+            ->add(new RoleMiddleware(['admin']))    
             ->add(new AuthMiddleware());
-            
+
         $group->post('/create', [TicketsRepository::class, 'crear'])
             ->add(new RoleMiddleware(['gestor']))
             ->add(new AuthMiddleware());
