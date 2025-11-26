@@ -9,7 +9,76 @@
   <link rel="stylesheet" href="css/dashboard_gestor.css">
 </head>
 <body>
-  <h1>SI sALE ESTE MENSAJE ES PORQUE ENTRÖ A GESTOR</h1>
+  <header class="topbar">
+    <div class="brand">Sistema de Tickets</div>
+    <div class="user-area">
+      <span id="userName"></span>
+      <button id="logoutBtn" class="btn-ghost">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left-col">
+      <div class="card stats">
+        <div class="stat">
+          <div class="stat-title">Tickets abiertos</div>
+          <div id="countAbierto" class="stat-value">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">En progreso</div>
+          <div id="countProgreso" class="stat-value">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Cerrados</div>
+          <div id="countCerrado" class="stat-value">0</div>
+        </div>
+      </div>
+
+      <div class="card create-card">
+        <h3>Crear ticket</h3>
+        <input id="nuevoTitulo" placeholder="Título">
+        <textarea id="nuevaDescripcion" placeholder="Descripción"></textarea>
+        <button id="btnCrear" class="btn-primary">Crear</button>
+        <p id="crearMsg" class="small-msg"></p>
+      </div>
+    </section>
+
+    <section class="right-col">
+      <div class="card">
+        <div class="card-header">
+          <h3>Mis tickets</h3>
+          <div>
+            <select id="filterEstado">
+              <option value="">Todos</option>
+              <option value="abierto">Abierto</option>
+              <option value="en_progreso">En progreso</option>
+              <option value="resuelto">Resuelto</option>
+              <option value="cerrado">Cerrado</option>
+            </select>
+            <button id="btnFiltrar" class="btn-ghost">Filtrar</button>
+            <button id="btnRefrescar" class="btn-ghost">Refrescar</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="tickets-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Admin</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="ticketsBody">
+              <!-- filas por JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="js/dashboard_gestor.js"></script>
 </body>
