@@ -22,3 +22,25 @@ body {
 .btn-primary:hover {
     background: #1558b0;
 }
+
+/* Index.html */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ticket - Detalle</title>
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/ticket.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">Sistema de Tickets</div>
+        <div class="user-area">
+            <span id="userNameTicket"></span>
+            <button id="logoutBtnTicket" class="btn-ghost">Cerrar sesión</button>
+        </div>
+    </header>
+        <main class="ticket-container">
+            <div class="ticket-card">
+                <h2 id="ticketTitulo">—</h2>
+                <p id="ticketDescripcion" class="muted"></p>
+                <div class="meta">
+                    <span>Estado: <strong id="ticketEstado">—</strong></span>
+                    <span>Gestor: <strong id="ticketGestor">—</strong></span>
+                    <span>Admin: <strong id="ticketAdmin">—</strong></span>
+                </div>
+            <section class="actividades">
+                <h3>Historial / Actividades</h3>
+                <div id="actividadesList"></div>
+            </section>
+            <section class="comentario-form">
+                <h3>Agregar comentario</h3>
+                <textarea id="comentarioTexto" placeholder="Escribe tu comentario..."></textarea>
+                <button id="btnComentar" class="btn-primary">Comentar</button>
+                <p id="comentMsg" class="small-msg"></p>
+            </section>
+            </div>
+        </main>
+    <script src="js/ticket.js"></script>
+</body>
+</html>

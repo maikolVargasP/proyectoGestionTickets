@@ -1,0 +1,55 @@
+.ticket-container { 
+    max-width:900px; 
+    margin:28px auto; 
+    padding:0 16px; 
+}
+.ticket-card { 
+    background:#fff; 
+    padding:20px; 
+    border-radius:10px; 
+    box-shadow:0 4px 18px rgba(0,0,0,0.06); 
+}
+.muted { 
+    color:#666; 
+    margin-bottom:8px; 
+}
+.meta { 
+    display:flex; 
+    gap:16px; 
+    margin:12px 0 20px 0; 
+    color:#444; 
+}
+.actividades { 
+    margin-top:20px; 
+}
+.actividad { 
+    padding:10px; 
+    border-radius:8px; 
+    border:1px solid #f0f0f0; 
+    margin-bottom:8px; 
+    background:#fafafa; 
+}
+.actividad .autor { 
+    font-weight:600; 
+    font-size:13px; 
+    color:#333; 
+}
+.actividad .texto { 
+    margin-top:6px; 
+    color:#333; 
+}
+
+/* comentario */
+.comentario-form textarea { 
+    width:100%; 
+    min-height:90px; 
+    padding:10px; 
+    border-radius:8px; 
+    border:1px solid #e6e6e6; 
+    margin-bottom:8px; 
+}
+.small-msg { 
+    font-size:13px; 
+    color:#666; 
+    margin-top:6px; 
+}
