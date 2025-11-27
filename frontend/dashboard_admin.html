@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Administrador</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <div class="header">
+        <h2>Panel Administrador - Bienvenido, <span id="adminNombre"></span></h2>
+        <button class="logout" id="logoutBtn">Cerrar Sesión</button>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Todos los Tickets</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Estado</th>
+                        <th>Creador</th>
+                        <th>Asignado a</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaTicketsAdmin"></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

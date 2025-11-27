@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Ticket</title>
+    <link rel="stylesheet" href="css/ticket_admin.css">
+</head>
+<body>
+
+    <div class="header">
+        <h2>Detalle del Ticket</h2>
+        <button id="logoutBtn" class="logout">Cerrar Sesión</button>
+    </div>
+
+    <div class="container">
+
+        <!-- Información del ticket -->
+        <div class="card">
+            <h3>Información del Ticket</h3>
+            <p><strong>ID:</strong> <span id="tId"></span></p>
+            <p><strong>Título:</strong> <span id="tTitulo"></span></p>
+            <p><strong>Descripción:</strong> <span id="tDescripcion"></span></p>
+            <p><strong>Estado:</strong> <span id="tEstado"></span></p>
+            <p><strong>Gestor creador:</strong> <span id="tGestor"></span></p>
+            <p><strong>Administrador asignado:</strong> <span id="tAdmin"></span></p>
+        </div>
+
+        <!-- Cambiar estado -->
+        <div class="card">
+            <h3>Cambiar Estado</h3>
+
+            <select id="selectEstado">
+                <option value="abierto">abierto</option>
+                <option value="en_progreso">en_progreso</option>
+                <option value="resuelto">resuelto</option>
+                <option value="cerrado">cerrado</option>
+            </select>
+
+            <button id="btnCambiarEstado" class="btn-primary">Guardar Estado</button>
+            <p id="msgEstado" class="msg"></p>
+        </div>
+
+        <!-- Asignar gestor -->
+        <div class="card">
+            <h3>Asignar Gestor</h3>
+
+            <select id="selectGestor"></select>
+            <button id="btnAsignarGestor" class="btn-primary">Asignar</button>
+
+            <p id="msgAsignar" class="msg"></p>
+        </div>
+
+        <!-- Comentarios/actividades -->
+        <div class="card">
+            <h3>Historial de Actividades</h3>
+
+            <ul id="listaActividades"></ul>
+
+            <textarea id="actividadTexto" placeholder="Escribe una actividad o comentario..."></textarea>
+            <button id="btnAgregarActividad" class="btn-primary">Agregar</button>
+
+            <p id="msgActividad" class="msg"></p>
+        </div>
+
+    </div>
+
+    <script src="js/ticket_admin.js"></script>
+</body>
+</html>

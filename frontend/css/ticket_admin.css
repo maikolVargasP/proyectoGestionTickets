@@ -1,0 +1,95 @@
+:root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --accent: #1a73e8;
+    --danger: #d9534f;
+    --muted: #777;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, sans-serif;
+    background: var(--bg);
+}
+
+.header {
+    max-width: 1200px;
+    margin: auto;
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout {
+    background: var(--danger);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 10px;
+    margin-top: 12px;
+    min-height: 80px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.msg {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+ul#listaActividades {
+    list-style: none;
+    padding: 0;
+}
+
+ul#listaActividades li {
+    background: #fafafa;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+}

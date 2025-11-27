@@ -1,0 +1,106 @@
+/* admin.css - estilos para dashboard admin */
+:root{
+  --bg: #f4f6f9;
+  --card: #fff;
+  --accent: #1a73e8;
+  --muted: #777;
+  --danger: #d9534f;
+  --radius: 10px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color:#111;
+  -webkit-font-smoothing:antialiased;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px;
+  background:transparent;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.header h2{
+  margin:0;
+  font-size:28px;
+  font-weight:700;
+}
+
+.logout{
+  background:var(--danger);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* layout */
+.container{
+  max-width:1200px;
+  margin:18px auto;
+  padding:0 18px 40px;
+}
+
+/* card */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(16,24,40,0.06);
+  padding:18px;
+}
+
+/* table */
+.card table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:15px;
+}
+
+.card thead th{
+  text-align:left;
+  padding:14px 12px;
+  color:#222;
+  font-weight:700;
+  border-bottom:1px solid #f0f0f0;
+}
+
+.card tbody td{
+  padding:14px 12px;
+  border-bottom:1px solid #f7f7f7;
+  vertical-align:middle;
+  color:#333;
+}
+
+/* acciones */
+.btn-ghost{
+  background:transparent;
+  border:1px solid #e6e6e6;
+  padding:8px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+  padding:8px 12px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+}
+
+/* small responsive */
+@media (max-width: 900px){
+  .header h2{ font-size:20px; }
+  .card thead{ display:none; }
+  .card tbody td{ display:block; padding:12px; }
+  .card tbody tr{ margin-bottom:12px; display:block; border-radius:8px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.03); }
+}
