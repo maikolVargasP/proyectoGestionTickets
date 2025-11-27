@@ -81,5 +81,5 @@ document.getElementById("crearTicketForm").addEventListener("submit", async (e) 
 
 // ------------------- IR A VER TICKET --------------------
 function verTicket(id) {
-    window.location.href = `ticket_detalle.html?id=${id}`;
+    window.location.href = `ticket_detalle_gestor.html?id=${id}`;
 }

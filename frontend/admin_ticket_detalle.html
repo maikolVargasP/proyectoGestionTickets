@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Ticket</title>
+    <link rel="stylesheet" href="css/admin_detalle.css">
+</head>
+<body>
+
+    <header class="header">
+        <h2>Detalle del Ticket</h2>
+        <button onclick="volverDashboard()" class="btnVolver">← Volver</button>
+    </header>
+
+    <section class="container">
+
+        <!-- INFO DEL TICKET -->
+        <div class="card">
+            <h3>Información del ticket</h3>
+
+            <p><b>ID:</b> <span id="tId"></span></p>
+            <p><b>Título:</b> <span id="tTitulo"></span></p>
+            <p><b>Descripción:</b></p>
+            <p id="tDescripcion" class="descripcion"></p>
+
+            <p><b>Estado actual:</b> <span id="tEstado"></span></p>
+            <p><b>Gestor asignado:</b> <span id="tGestor"></span></p>
+            <p><b>Administrador responsable:</b> <span id="tAdmin"></span></p>
+        </div>
+
+        <!-- CAMBIAR ESTADO -->
+        <div class="card">
+            <h3>Cambiar estado</h3>
+
+            <select id="nuevoEstado">
+                <option value="abierto">Abierto</option>
+                <option value="en_progreso">En Progreso</option>
+                <option value="resuelto">Resuelto</option>
+                <option value="cerrado">Cerrado</option>
+            </select>
+
+            <button id="btnCambiarEstado">Actualizar estado</button>
+            <p id="msgEstado" class="msg"></p>
+        </div>
+
+        <!-- ASIGNAR GESTOR -->
+        <div class="card">
+            <h3>Asignar gestor</h3>
+
+            <select id="listaGestores"></select>
+            <button id="btnAsignarGestor">Asignar</button>
+
+            <p id="msgGestor" class="msg"></p>
+        </div>
+
+        <!-- ACTIVIDADES -->
+        <div class="card">
+            <h3>Historial de Actividades</h3>
+
+            <ul id="listaActividades" class="actividades"></ul>
+        </div>
+
+        <!-- NUEVO COMENTARIO -->
+        <div class="card">
+            <h3>Añadir comentario</h3>
+
+            <textarea id="comentario" placeholder="Escribe un comentario..." required></textarea>
+            <button id="btnComentar">Enviar comentario</button>
+
+            <p id="msgComentario" class="msg"></p>
+        </div>
+
+    </section>
+
+    <script src="js/admin_detalle.js"></script>
+</body>
+</html>

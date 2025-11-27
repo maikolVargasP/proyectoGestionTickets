@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel del Administrador</title>
+    <title>Panel Administrador</title>
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
-    <div class="header">
-        <h2>Panel Administrador - Bienvenido, <span id="adminNombre"></span></h2>
-        <button class="logout" id="logoutBtn">Cerrar Sesión</button>
-    </div>
+    <header class="header">
+        <h2>Panel del Administrador</h2>
+        <div>
+            <span id="adminNombre"></span>
+            <button id="logoutBtn" class="logout">Cerrar Sesión</button>
+        </div>
+    </header>
 
-    <div class="container">
+    <section class="container">
+
+        <div class="filtros">
+            <input type="text" id="search" placeholder="Buscar por título, ID o gestor...">
+
+            <select id="filtroEstado">
+                <option value="">Todos los estados</option>
+                <option value="abierto">Abierto</option>
+                <option value="en_progreso">En Progreso</option>
+                <option value="resuelto">Resuelto</option>
+                <option value="cerrado">Cerrado</option>
+            </select>
+        </div>
 
         <div class="card">
-            <h3>Todos los Tickets</h3>
+            <h3>Tickets Registrados</h3>
 
             <table>
                 <thead>
@@ -24,17 +39,15 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Estado</th>
-                        <th>Creador</th>
-                        <th>Asignado a</th>
+                        <th>Gestor</th>
+                        <th>Admin</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody id="tablaTicketsAdmin"></tbody>
+                <tbody id="tablaTickets"></tbody>
             </table>
-
         </div>
-
-    </div>
+    </section>
 
     <script src="js/admin.js"></script>
 </body>

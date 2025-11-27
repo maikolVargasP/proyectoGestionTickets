@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Ticket</title>
+    <link rel="stylesheet" href="css/ticket_gestor.css">
+</head>
+<body>
+
+    <div class="header">
+        <h2>Ticket #<span id="ticketId"></span></h2>
+        <button class="btn-back" onclick="history.back()">⬅ Volver</button>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Información del ticket</h3>
+
+            <p><strong>Título:</strong> <span id="titulo"></span></p>
+            <p><strong>Descripción:</strong> <span id="descripcion"></span></p>
+            <p><strong>Estado:</strong> <span id="estado"></span></p>
+            <p><strong>Administrador asignado:</strong> <span id="adminAsignado"></span></p>
+        </div>
+
+        <div class="card">
+            <h3>Historial del ticket</h3>
+
+            <ul id="listaActividades"></ul>
+        </div>
+
+        <div class="card">
+            <h3>Agregar comentario</h3>
+
+            <form id="comentarioForm">
+                <textarea id="mensaje" placeholder="Escribe un comentario..." required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+
+            <p id="comentarioMsg" class="msg"></p>
+        </div>
+
+    </div>
+
+    <script src="js/ticket_detalle_gestor.js"></script>
+</body>
+</html>

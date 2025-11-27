@@ -8,20 +8,24 @@
 </head>
 <body>
 
-    <div class="header">
+    <header class="header">
         <h2>Bienvenido, <span id="gestorNombre"></span></h2>
         <button id="logoutBtn" class="logout">Cerrar Sesión</button>
-    </div>
+    </header>
 
     <div class="container">
-
         <div class="card">
             <h3>Crear Nuevo Ticket</h3>
 
             <form id="crearTicketForm">
                 <input type="text" id="titulo" placeholder="Título del ticket" required>
                 <textarea id="descripcion" placeholder="Descripción" required></textarea>
-                <button type="submit">Crear Ticket</button>
+                <button type="submit" class="btn-76">
+                    Crear Ticket
+                    <span class="top"></span>
+                    <span class="right"></span>
+                    <span class="bottom"></span>
+                    <span class="left"></span></button>
             </form>
 
             <p id="crearMsg" class="msg"></p>

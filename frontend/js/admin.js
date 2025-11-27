@@ -4,96 +4,83 @@ const nombre = localStorage.getItem("nombre");
 
 const API = "http://127.0.0.1:8001/tickets";
 
-// Si no es admin → fuera
 if (!token || role !== "admin") {
     window.location.href = "login.html";
 }
 
 document.getElementById("adminNombre").textContent = nombre;
 
-// ---------------- LOGOUT ----------------
+// -------------------- LOGOUT -------------------
 document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.clear();
     window.location.href = "login.html";
 });
 
-// ---------------- CARGAR TODOS LOS TICKETS ----------------
-async function cargarTicketsAdmin() {
+// -------------------- CARGAR TICKETS -------------------
+let tickets = [];
+
+async function cargarTickets() {
     const res = await fetch(`${API}/all`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
-    const data = await res.json();
+    if (res.status === 204) {
+        document.getElementById("tablaTickets").innerHTML = `
+            <tr><td colspan="6">No hay tickets registrados</td></tr>`;
+        return;
+    }
 
-    let html = "";
+    tickets = await res.json();
+    mostrarTabla(tickets);
+}
 
-    data.forEach(t => {
-        html += `
+function mostrarTabla(lista) {
+    const tbody = document.getElementById("tablaTickets");
+    tbody.innerHTML = "";
+
+    lista.forEach(t => {
+        tbody.innerHTML += `
             <tr>
                 <td>${t.id}</td>
                 <td>${t.titulo}</td>
                 <td>${t.estado}</td>
-                <td>${t.creador?.name || "N/A"}</td>
-                <td>${t.asignado?.name || "Sin asignar"}</td>
-                <td>
-                    <button onclick="verTicket(${t.id})">Ver</button>
-                </td>
+                <td>${t.gestor ? t.gestor.name : "—"}</td>
+                <td>${t.admin ? t.admin.name : "—"}</td>
+                <td><button onclick="verTicket(${t.id})">Ver</button></td>
             </tr>
         `;
     });
-
-    document.getElementById("tablaTicketsAdmin").innerHTML = html;
 }
 
-async function cargarTicketsAdmin() {
-    const res = await fetch(`${API}/all`, {
-        headers: { "Authorization": "Bearer " + token }
-    });
+cargarTickets();
 
-    if (!res.ok) {
-        document.getElementById("tablaTicketsAdmin").innerHTML = `<tr><td colspan="6">Error al cargar tickets</td></tr>`;
+// -------------------- BUSCADOR -------------------
+document.getElementById("search").addEventListener("input", function () {
+    const texto = this.value.toLowerCase();
+
+    const filtrados = tickets.filter(t =>
+        t.titulo.toLowerCase().includes(texto) ||
+        t.id.toString().includes(texto) ||
+        (t.gestor?.nombre?.toLowerCase() || "").includes(texto)
+    );
+
+    mostrarTabla(filtrados);
+});
+
+// -------------------- FILTRO POR ESTADO -------------------
+document.getElementById("filtroEstado").addEventListener("change", function () {
+    const estado = this.value;
+
+    if (estado === "") {
+        mostrarTabla(tickets);
         return;
     }
 
-    const data = await res.json();
+    const filtrados = tickets.filter(t => t.estado === estado);
+    mostrarTabla(filtrados);
+});
 
-    if (!Array.isArray(data) || data.length === 0) {
-        document.getElementById("tablaTicketsAdmin").innerHTML = `<tr><td colspan="6">No hay tickets</td></tr>`;
-        return;
-    }
-
-    let html = "";
-
-    data.forEach(t => {
-        // tu backend devuelve relaciones como 'gestor' y 'admin'
-        const creador = t.gestor ? (t.gestor.name || t.gestor.nombre || t.gestor.email) : "N/A";
-        const asignado = t.admin ? (t.admin.name || t.admin.nombre || t.admin.email) : "Sin asignar";
-
-        html += `
-            <tr>
-                <td>${t.id}</td>
-                <td>${escapeHtml(t.titulo)}</td>
-                <td>${escapeHtml(t.estado)}</td>
-                <td>${escapeHtml(creador)}</td>
-                <td>${escapeHtml(asignado)}</td>
-                <td>
-                    <button class="btn-primary" onclick="verTicket(${t.id})">Ver</button>
-                </td>
-            </tr>
-        `;
-    });
-
-    document.getElementById("tablaTicketsAdmin").innerHTML = html;
-}
-
-// helper escape
-function escapeHtml(text) {
-  if (!text && text !== 0) return '';
-  return String(text).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-}
-
-
-// ---------------- VER DETALLE ----------------
+// -------------------- IR A PAGINA DE DETALLE -------------------
 function verTicket(id) {
-    window.location.href = `ticket_detalle_admin.html?id=${id}`;
+    window.location.href = `admin_ticket_detalle.html?id=${id}`;
 }
