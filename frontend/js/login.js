@@ -9,6 +9,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     errorMsg.textContent = "";
     btn.disabled = true;
     btn.textContent = "Ingresando...";
+    
 
     try {
         const response = await fetch("http://127.0.0.1:8000/usuarios/login", {
@@ -26,7 +27,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         // Guardar token y datos del usuario
         localStorage.setItem("token", data.token);
-        localStorage.setItem("nombre", data.user.nombre);
+        localStorage.setItem("nombre", data.user.name);
         localStorage.setItem("role", data.user.role);
         localStorage.setItem("id", data.user.id);
 

@@ -1,85 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dashboard - Gestor</title>
-
-  <link rel="stylesheet" href="css/globals.css">
-  <link rel="stylesheet" href="css/dashboard_gestor.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Gestor</title>
+    <link rel="stylesheet" href="css/gestor.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">Sistema de Tickets</div>
-    <div class="user-area">
-      <span id="userName"></span>
-      <button id="logoutBtn" class="btn-ghost">Cerrar sesión</button>
+
+    <div class="header">
+        <h2>Bienvenido, <span id="gestorNombre"></span></h2>
+        <button id="logoutBtn" class="logout">Cerrar Sesión</button>
     </div>
-  </header>
 
-  <main class="container">
-    <section class="left-col">
-      <div class="card stats">
-        <div class="stat">
-          <div class="stat-title">Tickets abiertos</div>
-          <div id="countAbierto" class="stat-value">0</div>
-        </div>
-        <div class="stat">
-          <div class="stat-title">En progreso</div>
-          <div id="countProgreso" class="stat-value">0</div>
-        </div>
-        <div class="stat">
-          <div class="stat-title">Cerrados</div>
-          <div id="countCerrado" class="stat-value">0</div>
-        </div>
-      </div>
+    <div class="container">
 
-      <div class="card create-card">
-        <h3>Crear ticket</h3>
-        <input id="nuevoTitulo" placeholder="Título">
-        <textarea id="nuevaDescripcion" placeholder="Descripción"></textarea>
-        <button id="btnCrear" class="btn-primary">Crear</button>
-        <p id="crearMsg" class="small-msg"></p>
-      </div>
-    </section>
+        <div class="card">
+            <h3>Crear Nuevo Ticket</h3>
 
-    <section class="right-col">
-      <div class="card">
-        <div class="card-header">
-          <h3>Mis tickets</h3>
-          <div>
-            <select id="filterEstado">
-              <option value="">Todos</option>
-              <option value="abierto">Abierto</option>
-              <option value="en_progreso">En progreso</option>
-              <option value="resuelto">Resuelto</option>
-              <option value="cerrado">Cerrado</option>
-            </select>
-            <button id="btnFiltrar" class="btn-ghost">Filtrar</button>
-            <button id="btnRefrescar" class="btn-ghost">Refrescar</button>
-          </div>
+            <form id="crearTicketForm">
+                <input type="text" id="titulo" placeholder="Título del ticket" required>
+                <textarea id="descripcion" placeholder="Descripción" required></textarea>
+                <button type="submit">Crear Ticket</button>
+            </form>
+
+            <p id="crearMsg" class="msg"></p>
         </div>
 
-        <div class="table-wrap">
-          <table class="tickets-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Estado</th>
-                <th>Admin</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="ticketsBody">
-              <!-- filas por JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  </main>
+        <div class="card">
+            <h3>Mis Tickets</h3>
 
-  <script src="js/dashboard_gestor.js"></script>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaTickets"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="js/gestor.js"></script>
 </body>
 </html>

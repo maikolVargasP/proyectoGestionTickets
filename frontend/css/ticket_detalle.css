@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.volver {
+    padding: 8px 12px;
+    background: #2a78f6;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    width: 100%;
+    background: #2a78f6;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.actividad-lista {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.actividad-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.msg {
+    margin-top: 10px;
+}
