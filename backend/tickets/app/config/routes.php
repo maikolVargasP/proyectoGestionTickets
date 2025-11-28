@@ -6,24 +6,24 @@ use App\Middleware\AuthMiddleware;
 use App\Middleware\RoleMiddleware;
 
 return function (App $app) {
-
+// Rutas para la gestión de tickets
     $app->group('/tickets', function (RouteCollectorProxy $group) {
         $group->get('/search', [TicketsRepository::class, 'buscar'])
             ->add(new RoleMiddleware(['admin']))    
             ->add(new AuthMiddleware());
-
+        // Rutas protegidas por autenticación y autorización
         $group->post('/create', [TicketsRepository::class, 'crear'])
             ->add(new RoleMiddleware(['gestor']))
             ->add(new AuthMiddleware());
-            
+        // Rutas para ver, asignar y cambiar estado de tickets
         $group->get('/mine', [TicketsRepository::class, 'misTickets'])
             ->add(new RoleMiddleware(['gestor']))
             ->add(new AuthMiddleware());
-            
+        // Rutas para administradores
         $group->get('/all', [TicketsRepository::class, 'todos'])
             ->add(new RoleMiddleware(['admin']))
             ->add(new AuthMiddleware());
-
+        // Rutas para ver detalles, asignar, cambiar estado, agregar comentarios y actividades
         $group->get('/{id}', [TicketsRepository::class, 'ver'])
             ->add(new AuthMiddleware());
 
@@ -43,7 +43,7 @@ return function (App $app) {
             ->add(new AuthMiddleware());
         
         $group->post('/{id}/actividad', [TicketsRepository::class, 'agregarActividad'])
-            ->add(new AuthMiddleware()); // admin y gestor pueden
+            ->add(new AuthMiddleware()); 
         
 
 

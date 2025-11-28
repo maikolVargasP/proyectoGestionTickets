@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class UsuariosRepository
 {
+    // Obtener todos los usuarios
     public function queryAllUsuarios(Request $request, Response $response)
     {
         $controller = new UsuariosController();
@@ -18,6 +19,7 @@ class UsuariosRepository
         $response->getBody()->write($data);
         return $response->withHeader('Content-Type', 'application/json');
     }
+    // Registrar un nuevo usuario
 
     public function registrarUsuario(Request $request, Response $response)
     {
@@ -127,11 +129,39 @@ class UsuariosRepository
         $response->getBody()->write(json_encode(['message' => 'Usuario eliminado correctamente']));
         return $response->withHeader("Content-Type", "application/json");
     }
+    // Cerrar sesión (logout)
     public function logout(Request $request, Response $response)
     {
+        // Obtener el token del header Authorization
+        $authHeader = $request->getHeaderLine('Authorization');
+        
+        if (empty($authHeader)) {
+            $response->getBody()->write(json_encode([
+                'error' => 'Token no proporcionado'
+            ]));
+            return $response->withStatus(401)->withHeader("Content-Type", "application/json");
+        }
+
+        // Extraer el token (formato: "Bearer token_aqui")
+        $token = str_replace('Bearer ', '', $authHeader);
+
+        // Buscar y eliminar el token de la base de datos
+        $authToken = \App\Models\AuthToken::where('token', $token)->first();
+        
+        if (!$authToken) {
+            $response->getBody()->write(json_encode([
+                'error' => 'Token no encontrado o ya eliminado'
+            ]));
+            return $response->withStatus(404)->withHeader("Content-Type", "application/json");
+        }
+
+        // Eliminar el token
+        $authToken->delete();
+
         $response->getBody()->write(json_encode([
-            'message' => 'Sesión cerrada correctamente. Eliminé el token en el frontend.'
+            'message' => 'Sesión cerrada correctamente. Token eliminado de la base de datos.'
         ]));
+        
         return $response->withHeader("Content-Type", "application/json");
     }
     public function validarToken(Request $request, Response $response)

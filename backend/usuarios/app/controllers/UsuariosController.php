@@ -46,7 +46,7 @@ class UsuariosController
             return ['error' => 'El email no está registrado.', 'status' => 404];
         }
         // Verificar contraseña (detectando si está hasheada o es texto plano)
-        // Caso 1: contraseña hasheada (empieza por $2y$)
+        // Caso 1: contraseña hasheada 
         if (str_starts_with($user->password, '$2y$')) {
             if (!password_verify($data['password'], $user->password)) {
                 return ['error' => 'Contraseña incorrecta.', 'status' => 401];

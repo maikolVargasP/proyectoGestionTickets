@@ -35,30 +35,6 @@ async function cargarTicket() {
 
 cargarTicket();
 
-// ------------------------ Cargar actividades ------------------------
-async function cargarActividades() {
-    const res = await fetch(`${API}/${ticketId}/actividades`, {
-        headers: { "Authorization": "Bearer " + token }
-    });
-
-    const data = await res.json();
-    const lista = document.getElementById("listaActividades");
-
-    lista.innerHTML = "";
-
-    data.forEach(a => {
-        lista.innerHTML += `
-            <li>
-                <strong>${a.user_id == userId ? "Tú" : "Usuario #" + a.user_id}:</strong>
-                ${a.mensaje}
-                <br>
-                <small>${a.created_at}</small>
-            </li>
-        `;
-    });
-}
-
-cargarActividades();
 
 // ------------------------ Enviar comentario ------------------------
 document.getElementById("comentarioForm").addEventListener("submit", async (e) => {

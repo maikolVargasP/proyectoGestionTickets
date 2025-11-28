@@ -19,8 +19,7 @@ return function (App $app) {
 
     $app->group('/usuarios', function (RouteCollectorProxy $group) {
 
-        // ---- RUTAS ESTÁTICAS (van primero) ----
-
+        // ---- RUTAS ESTÁTICAS ----
         $group->get('/all', [UsuariosRepository::class, 'queryAllUsuarios'])
             ->add(new RoleMiddleware(['admin']))
             ->add(new AuthMiddleware());
@@ -37,11 +36,7 @@ return function (App $app) {
         $group->get('/validate-token', [UsuariosRepository::class, 'validarToken'])
             ->add(new AuthMiddleware());
 
-        // ---- RUTAS DINÁMICAS (van SIEMPRE al final) ----
-
-        // Nota: puedes agregar restricción numérica si quieres:
-        // '/{id:[0-9]+}'
-
+        // ---- RUTAS DINÁMICAS ----
         $group->get('/{id}', [UsuariosRepository::class, 'obtenerUsuario'])
             ->add(new AuthMiddleware())
             ->add(new RoleMiddleware(['admin']));

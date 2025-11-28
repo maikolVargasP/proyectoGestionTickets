@@ -8,13 +8,12 @@ use App\Models\Ticket;
 use App\Models\TicketActividad;
 use App\Models\User;
 
-
-
 class TicketsRepository
 {
+    // Crear un nuevo ticket
     public function crear(Request $request, Response $response)
     {
-        $user = $request->getAttribute('user'); // viene del token
+        $user = $request->getAttribute('user'); 
         $data = $request->getParsedBody();
 
         // Validación básica
@@ -29,6 +28,7 @@ class TicketsRepository
         $response->getBody()->write($ticket->toJson());
         return $response->withHeader("Content-Type", "application/json");
     }
+    // Obtener tickets del gestor autenticado
     public function misTickets(Request $request, Response $response)
     {
         $user = $request->getAttribute('user'); // gestor autenticado
@@ -43,6 +43,7 @@ class TicketsRepository
         $response->getBody()->write($tickets->toJson());
         return $response->withHeader("Content-Type", "application/json");
     }
+    // Obtener todos los tickets (solo admin)
     public function todos(Request $request, Response $response)
     {
         $controller = new TicketsController();
@@ -55,6 +56,7 @@ class TicketsRepository
         $response->getBody()->write($tickets->toJson());
         return $response->withHeader("Content-Type", "application/json");
     }
+    // Ver un ticket por ID
     public function ver(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
@@ -77,6 +79,7 @@ class TicketsRepository
         $response->getBody()->write($ticket->toJson());
         return $response->withHeader("Content-Type", "application/json");
     }
+    // Asignar ticket a un administrador
     public function asignar(Request $request, Response $response, array $args)
     {
         $ticketId = $args['id'];
@@ -131,8 +134,7 @@ class TicketsRepository
         $response->getBody()->write($ticket->toJson());
         return $response->withHeader('Content-Type', 'application/json');
     }
-
-
+    // Cambiar estado del ticket
     public function cambiarEstado(Request $request, Response $response, array $args)
     {
         error_log("Entró al método cambiarEstado");
@@ -183,6 +185,7 @@ class TicketsRepository
         $response->getBody()->write($ticket->toJson());
         return $response->withHeader('Content-Type', 'application/json');
     }
+    // Obtener actividades de un ticket
     public function actividades(Request $request, Response $response, array $args)
     {
         $ticketId = $args['id'];
@@ -315,6 +318,4 @@ class TicketsRepository
         $response->getBody()->write($tickets->toJson());
         return $response->withHeader("Content-Type", "application/json");
     }
-
-
 }

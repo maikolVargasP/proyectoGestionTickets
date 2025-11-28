@@ -6,7 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Response as SlimResponse;
-
+// Middleware para autorización basada en roles
 class RoleMiddleware implements MiddlewareInterface
 {
     private array $allowedRoles;

@@ -12,9 +12,32 @@ if (!token || role !== "gestor") {
 document.getElementById("gestorNombre").textContent = nombre;
 
 // ------------------- LOGOUT --------------------
-document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.clear();
-    window.location.href = "login.html";
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    try {
+        // Llamar al backend para eliminar el token de la BD
+        const res = await fetch("http://127.0.0.1:8000/logout", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            console.log(data.message); // "Sesión cerrada correctamente..."
+        } else {
+            console.error("Error al cerrar sesión:", data.error);
+        }
+
+    } catch (error) {
+        console.error("Error de red:", error);
+    } finally {
+        // Siempre limpiar localStorage y redirigir, aunque falle la petición
+        localStorage.clear();
+        window.location.href = "login.html";
+    }
 });
 
 // ------------------- CARGAR MIS TICKETS --------------------

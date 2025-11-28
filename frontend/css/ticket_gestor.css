@@ -12,21 +12,32 @@ body {
     align-items: center;
     color: white;
 }
-
-.btn-back {
-    background: #3498db;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 14px;
+.header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
 }
 
+.btn-back {
+    background: #ffffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    padding: 4px 8px;
+}
+.btn-back img {
+    width: 20px;
+    height: 20px;
+}
+.btn-back:hover {
+    background: #8f8c8c;
+}
 .container {
-    width: 80%;
-    margin: 20px auto;
+    margin: 20px;
+    justify-content: center;
     display: grid;
+    grid-template-columns: 2fr 2fr;
     gap: 20px;
 }
 
@@ -38,7 +49,7 @@ body {
 }
 
 textarea {
-    width: 100%;
+    width: 90%;
     height: 80px;
     padding: 10px;
     resize: none;
@@ -70,4 +81,8 @@ ul li {
 .msg {
     margin-top: 10px;
     font-size: 14px;
+}
+.comentario {
+    margin-top: 20px;
+        grid-template-columns: 10fr;
 }

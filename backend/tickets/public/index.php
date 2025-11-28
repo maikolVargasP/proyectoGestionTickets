@@ -12,8 +12,6 @@ $app = AppFactory::create();
 $app->addBodyParsingMiddleware();
 
 // ---------- CORS ----------
-
-// Manejo de preflight OPTIONS
 $app->options('/{routes:.+}', function ($request, $response) {
     return $response;
 });

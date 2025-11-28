@@ -6,7 +6,6 @@ use App\Models\TicketActividad;
 
 class TicketsController
 {
-    // Crear un ticket
     public function crearTicket($data, $user)
     {
         // Crear ticket
@@ -14,8 +13,8 @@ class TicketsController
             'titulo'      => $data['titulo'],
             'descripcion' => $data['descripcion'],
             'estado'      => 'abierto',
-            'gestor_id'   => $user['id'],   // gestor autenticado
-            'admin_id'    => null           // aún sin asignar
+            'gestor_id'   => $user['id'],   
+            'admin_id'    => null           
         ]);
 
         // Registrar actividad inicial
