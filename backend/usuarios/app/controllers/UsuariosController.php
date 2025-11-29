@@ -99,12 +99,14 @@ class UsuariosController
         if (!$user) {
             return null;
         }
-        // Actualizar solo campos permitidos
+        
+        // Actualizar campos permitidos
         $user->name = $data['name'] ?? $user->name;
         $user->email = $data['email'] ?? $user->email;
         if (isset($data['password'])) {
             $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
         }
+        
         $user->save();
         return $user;
     }

@@ -46,7 +46,7 @@ body {
 }
 
 textarea {
-    width: 100%;
+    width: 90%;
     min-height: 80px;
     padding: 10px;
 }
@@ -79,4 +79,19 @@ button:hover {
     padding: 10px;
     margin-bottom: 8px;
     border-left: 4px solid #004080;
+}
+.btn-back {
+    background: #ffffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    padding: 4px 8px;
+}
+.btn-back img {
+    width: 20px;
+    height: 20px;
+}
+.btn-back:hover {
+    background: #8f8c8c;
 }

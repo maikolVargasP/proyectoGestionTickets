@@ -6,25 +6,21 @@ body {
 
 .header {
     background: #2c3e50;
-    padding: 20px 40px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #e9ecef;
 }
-.header h2 {
+.header h2, .header span {
     color: #ffffff;
-    font-weight: 500;
-    font-size: 20px;
 }
 .logout {
     background: #c62828;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 15px;
     cursor: pointer;
-    border-radius: 6px;
-    font-size: 14px;
 }
 .logout:hover {
     background: #8e1c1c;

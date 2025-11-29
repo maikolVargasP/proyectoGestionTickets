@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="css/usuarios_admin.css">
+</head>
+<body>
+
+<header class="header">
+    <h2>Gestión de Usuarios</h2>
+    <button onclick="volverDashboard()" class="btn-back"><img src="public/back.svg" alt="volver"></button>
+</header>
+
+<section class="container">
+
+    <div class="top-bar">
+        <input type="text" id="searchUser" class="barsearch" placeholder="Buscar por nombre, email o rol...">
+        <button id="btnNuevoUsuario" class="btnCrear">+ Crear Usuario</button>
+    </div>
+
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaUsuarios"></tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- =============== MODAL CREAR USUARIO =============== -->
+<div id="modalCrear" class="modal">
+    <div class="modal-content">
+        <h3>Crear Usuario</h3>
+
+        <label>Nombre</label>
+        <input type="text" id="newNombre">
+
+        <label>Email</label>
+        <input type="email" id="newEmail">
+
+        <label>Contraseña</label>
+        <input type="password" id="newPassword">
+
+        <label>Rol</label>
+        <select id="newRol">
+            <option value="gestor">Gestor</option>
+            <option value="admin">Administrador</option>
+            <option value="usuario">Usuario normal</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button id="btnGuardarNuevo" class="btnGuardar">Guardar</button>
+            <button onclick="cerrarModal()" class="btnCancelar">Cancelar</button>
+        </div>
+
+        <p id="msgCrear" class="msg"></p>
+    </div>
+</div>
+<!-- =============== MODAL EDITAR USUARIO =============== -->
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <h3>Editar Usuario</h3>
+
+        <input type="hidden" id="editId">
+
+        <label>Nombre</label>
+        <input type="text" id="editNombre">
+
+        <label>Email</label>
+        <input type="email" id="editEmail">
+
+        <label>Nueva Contraseña (dejar vacío para no cambiar)</label>
+        <input type="password" id="editPassword" placeholder="Opcional">
+
+        <label>Rol</label>
+        <select id="editRol">
+            <option value="gestor">Gestor</option>
+            <option value="admin">Administrador</option>
+            <option value="usuario">Usuario normal</option>
+        </select>
+
+        <label>Estado</label>
+        <select id="editEstado">
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button id="btnGuardarEdicion" class="btnGuardar">Guardar Cambios</button>
+            <button onclick="cerrarModalEditar()" class="btnCancelar">Cancelar</button>
+        </div>
+
+        <p id="msgEditar" class="msg"></p>
+    </div>
+</div>
+
+<script src="js/usuarios_admin.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background: #f3f3f3;
 }
 
@@ -19,6 +19,9 @@ body {
     border: none;
     padding: 8px 15px;
     cursor: pointer;
+}
+.logout:hover {
+    background: #8e1c1c;
 }
 
 .container {
@@ -59,3 +62,23 @@ table th {
     padding: 8px;
     width: 50%;
 }
+.acciones-admin {
+    max-width: 1000px;
+    margin: 20px auto;
+    text-align: right;
+}
+
+.btnUsuarios {
+    background: #0066cc;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btnUsuarios:hover {
+    opacity: 0.9;
+}
+

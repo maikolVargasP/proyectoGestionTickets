@@ -84,3 +84,7 @@ document.getElementById("filtroEstado").addEventListener("change", function () {
 function verTicket(id) {
     window.location.href = `ticket_detalle_admin.html?id=${id}`;
 }
+
+function irUsuarios() {
+    window.location.href = "usuarios_admin.html";
+}
