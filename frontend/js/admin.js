@@ -46,7 +46,7 @@ function mostrarTabla(lista) {
                 <td>${t.estado}</td>
                 <td>${t.gestor ? t.gestor.name : "—"}</td>
                 <td>${t.admin ? t.admin.name : "—"}</td>
-                <td><button onclick="verTicket(${t.id})">Ver</button></td>
+                <td><button onclick="verTicket(${t.id})" class="btnConsultar">Consultar</button></td>
             </tr>
         `;
     });

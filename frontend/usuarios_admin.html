@@ -104,6 +104,37 @@
         <p id="msgEditar" class="msg"></p>
     </div>
 </div>
+<!-- =============== MODAL EDITAR USUARIO =============== -->
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <h3>Editar Usuario</h3>
+
+        <input type="hidden" id="editId">
+
+        <label>Nombre</label>
+        <input type="text" id="editNombre">
+
+        <label>Email</label>
+        <input type="email" id="editEmail">
+
+        <label>Nueva Contraseña (opcional)</label>
+        <input type="password" id="editPassword" placeholder="Dejar vacío para no cambiar">
+
+        <label>Rol</label>
+        <select id="editRol">
+            <option value="gestor">Gestor</option>
+            <option value="admin">Administrador</option>
+            <option value="usuario">Usuario normal</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button id="btnGuardarEdicion" class="btnGuardar">Guardar Cambios</button>
+            <button onclick="cerrarModalEditar()" class="btnCancelar">Cancelar</button>
+        </div>
+
+        <p id="msgEditar" class="msg"></p>
+    </div>
+</div>
 
 <script src="js/usuarios_admin.js"></script>
 </body>

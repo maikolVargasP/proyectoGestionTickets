@@ -38,16 +38,16 @@ return function (App $app) {
 
         // ---- RUTAS DINÁMICAS ----
         $group->get('/{id}', [UsuariosRepository::class, 'obtenerUsuario'])
-            ->add(new AuthMiddleware())
-            ->add(new RoleMiddleware(['admin']));
+            ->add(new RoleMiddleware(['admin']))
+            ->add(new AuthMiddleware());
 
         $group->put('/{id}', [UsuariosRepository::class, 'actualizarUsuario'])
-            ->add(new AuthMiddleware())
-            ->add(new RoleMiddleware(['admin']));
+            ->add(new RoleMiddleware(['admin']))
+            ->add(new AuthMiddleware());
 
         $group->delete('/{id}', [UsuariosRepository::class, 'eliminarUsuario'])
-            ->add(new AuthMiddleware())
-            ->add(new RoleMiddleware(['admin']));
+            ->add(new RoleMiddleware(['admin']))
+            ->add(new AuthMiddleware());
 
     });
 };
